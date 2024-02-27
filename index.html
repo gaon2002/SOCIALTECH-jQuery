@@ -6,6 +6,12 @@
     <meta name="description" content="SocialTechはEdTech業界のリーディングカンパニーを目指します。">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+
+    <!-- slickプラグインの読み込み -->
+    <!-- Add the slick-theme.css if you want default styling: slickで設定されているデフォルトのstyle -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling: slickで設定されているデフォルトのstyle(themeになる違いは分からない) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
   </head>
 
   <body>
@@ -53,13 +59,25 @@
 
     <main>
       <article>
-        <!-- メインビジュアル -->
-        <section id="main-visual">
-          <div id="main-message">
-            <h1>WORLD PEACE</h1>
-            <p>IT教育で世界平和を実現する</p>
+        <!-- メインビジュアル(カルーセルバージョン) -->
+        <section id="carousel-section">
+          <div class="carousel">
+            <a href="index.html">
+              <div>
+                <img class="carouselImg" src="images/carousel1.png">
+              </div>
+            </a>
+            <a href="mission.html">
+              <div>
+                <img class="carouselImg" src="images/carousel2.png">
+              </div>
+            </a>
+            <a href="product.html">
+              <div>
+                <img class="carouselImg" src="images/carousel3.png">
+              </div>
+            </a>
           </div>
-          <img src="images/index/index-main.png" alt="PCの周りに集まる多国籍の人たち">
         </section>
 
         <!-- MISSIONのレイアウト -->
@@ -449,7 +467,14 @@
           </form>
         </section>
       </article>
-      
+    <!-- jQuery3.X minifiedを適用 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <!-- slickプラグインの読み込み -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>   
+ 
     </main>
   <!-- フッター部 -->
   <footer>
@@ -471,10 +496,5 @@
       <span id="copyright">&copy;2021 SocialTech, Inc. All Rights Reserved. </span>
     </div>
   </footer>
-    <!-- jQuery3.X minifiedを適用 -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-  </body>
+</body>
 </html>
