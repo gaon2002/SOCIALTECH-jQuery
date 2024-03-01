@@ -20,12 +20,18 @@ p{
 /* カルーセルの幅は可変にできないため、body要素の幅の最小値に合わせて900pxよりも狭い幅に調整します。
  今回はカルーセル周囲の余白も考慮して885pxに設定し、body要素からはみ出ないようにします。 */
 .carousel{
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
+  /* カルーセルのサイズを100%指定し、更に、padding-right:20px,padding-left:20pxと
+内余白を設定しているため、両矢印がオーバーフローしているので、幅90%、margin: autoにする。 */
+  width: 90%;
+  margin: 0 auto;
 }
 .carouselImg{
   width: 100%;
+}
+.slick-prev:before, /*カルーセル矢印の戻るボタン*/
+.slick-next:before  /*カルーセル矢印の進むボタン*/
+{
+    color: #f00;
 }
 
 body{
@@ -651,13 +657,20 @@ PRODUCT.htmlページ(PC用)
 @media screen and (max-width: 768px) {
 /* カルーセル<div>のサイズ調整 */
 .carousel{
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0 auto 0 auto;
+  .carousel{
+    /* カルーセルのサイズを100%指定し、更に、padding-right:20px,padding-left:20pxと
+  内余白を設定しているため、両矢印がオーバーフローしているので、幅90%、margin: autoにする。 */
+    width: 90%;
+    margin: 0 auto;
+  }
 }
 .carouselImg{
   width: 100%;
+}
+.slick-prev:before, /*カルーセル矢印の戻るボタン*/
+.slick-next:before  /*カルーセル矢印の進むボタン*/
+{
+    color: #f00;
 }
 
 /* ページ全体 */
@@ -677,7 +690,6 @@ body{
   position: absolute;
     top: 0;
     right: 0;
-
 }
 /* スマホ用ナビゲーションの表示切替 */
 /* 初期状態、レイアウトと非表示設定 */

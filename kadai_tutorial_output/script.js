@@ -21,7 +21,7 @@ $(function(){
     dots: true,     //表示する
     infinite: true, //ループさせるか
     autoplaySpeed: 5000,  //次の画像に切り替えるまでの待ち時間　(5000ms)
-    arrows: false, //画像を手動で切り替えるための矢印ボタンを表示するかどうか
+    arrows: true, //画像を手動で切り替えるための矢印ボタンを表示するかどうか
   });
 
 
