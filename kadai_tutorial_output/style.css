@@ -684,9 +684,15 @@ body{
     float: right;にしていたので、カルーセルメニューがハンバーガーメニュー分右側に余白ができる
     floatをクリアすれば解決できた？ */
 #menu-sp{
+  float: right;
+  /*
   position: absolute;
     top: 0;
-    right: 0;
+    right: 0;*/
+}
+/* float解除 */
+#carousel-section{
+  clear: both;
 }
 /* スマホ用ナビゲーションの表示切替 */
 /* 初期状態、レイアウトと非表示設定 */
