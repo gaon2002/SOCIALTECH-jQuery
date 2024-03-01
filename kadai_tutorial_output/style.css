@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+/* グローバルセレクタにてブラウザの設定しているマージンとパディングを無効にし、レイアウトしやすくする */
+*{
+  margin: 0;
+  padding: 0;
+}
+
 /* PC、スマホ共通スタイル */
 body{
   /* フォント名にスペースが含まれる場合は""で囲むこと */
@@ -16,27 +22,9 @@ p{
 @media screen and (min-width: 769px) {
 /* 横幅設定 body要素の幅は900～1080pxの間（可変）*/
 
-/* PC用カルーセル設定 */
-/* カルーセルの幅は可変にできないため、body要素の幅の最小値に合わせて900pxよりも狭い幅に調整します。
- 今回はカルーセル周囲の余白も考慮して885pxに設定し、body要素からはみ出ないようにします。 */
-.carousel{
-  /* カルーセルのサイズを100%指定し、更に、padding-right:20px,padding-left:20pxと
-内余白を設定しているため、両矢印がオーバーフローしているので、幅90%、margin: autoにする。 */
-  width: 90%;
-  margin: 0 auto;
-}
-.carouselImg{
-  width: 100%;
-}
-.slick-prev:before, /*カルーセル矢印の戻るボタン*/
-.slick-next:before  /*カルーセル矢印の進むボタン*/
-{
-    color: #f00;
-}
-
 body{
   max-width: 1080px;
-  min-width: 900px; /* bodyの横幅は最小900px */
+  min-width: 769px; /* body: @media acreenのmin-widthが769pxなので、それに合わせる */
   margin: 0 auto 0 auto;
 }
 
@@ -77,6 +65,25 @@ header{
 }
 
 /* メインビジュアル */
+
+/* PC用カルーセル設定 */
+/* カルーセルの幅は可変にできないため、body要素の幅の最小値に合わせて900pxよりも狭い幅に調整します。
+ 今回はカルーセル周囲の余白も考慮して885pxに設定し、body要素からはみ出ないようにします。 */
+ .carousel{
+  /* カルーセルのサイズを100%指定し、更に、padding-right:20px,padding-left:20pxと
+内余白を設定しているため、両矢印がオーバーフローしているので、幅90%、margin: autoにする。 */
+  width: 90%;
+  margin: 0 auto;
+}
+.carouselImg{
+  width: 100%;
+}
+.slick-prev:before, /*カルーセル矢印の戻るボタン*/
+.slick-next:before  /*カルーセル矢印の進むボタン*/
+{
+    color: #f00;
+}
+
 #main-visual{
   position: relative;
   height: 400px;
@@ -383,6 +390,13 @@ h3{
   margin-left: 20px;
   font-weight: bold;
 }
+/* Web フォームの自動入力機能のスタイルを無効にする*/
+input:-webkit-autofill{
+  /* box-shadow: 入力欄にフォーカスが当たった時に、内側に1000px幅の薄いグレーの影を表示します。 */
+  /* inset: 影をボックスの内側に表示。 */
+	box-shadow: 0 0 0px 1000px #fafafa inset;
+}
+
 /* テキストボックス */
 .contact-textbox{
   border-top: 0;
@@ -655,23 +669,6 @@ PRODUCT.htmlページ(PC用)
 ============================*/
 /* iPad-miniのサイズ：デベロッパーツールの数字が768x1024なので、数字を変えている  */
 @media screen and (max-width: 768px) {
-/* カルーセル<div>のサイズ調整 */
-.carousel{
-  .carousel{
-    /* カルーセルのサイズを100%指定し、更に、padding-right:20px,padding-left:20pxと
-  内余白を設定しているため、両矢印がオーバーフローしているので、幅90%、margin: autoにする。 */
-    width: 90%;
-    margin: 0 auto;
-  }
-}
-.carouselImg{
-  width: 100%;
-}
-.slick-prev:before, /*カルーセル矢印の戻るボタン*/
-.slick-next:before  /*カルーセル矢印の進むボタン*/
-{
-    color: #f00;
-}
 
 /* ページ全体 */
 body{
@@ -752,40 +749,24 @@ body{
 ============================*/
 
 /* メインビジュアル */
-#main-visual{
-  position: relative;
-  height: 470px;
+
+/* カルーセル<div>のサイズ調整 */
+.carousel{
+  /* カルーセルのサイズを100%指定し、更に、padding-right:20px,padding-left:20pxと
+  内余白を設定しているため、両矢印がオーバーフローしているので、幅90%、margin: autoにする。 */
+    width: 90%;
+    margin: 0 auto;
+}
+.carouselImg{
   width: 100%;
-  /* 領域内に入りきらない要素をどのように表示するか：hidden 非表示/ visible 表示 */
-  overflow: hidden;
+  padding: 0 auto;
 }
-#main-visual > div {
-  position: absolute;
-   top: 0;
-   left: 0;
-  background-color: #2710d5;
-  color: white;
-  border-radius: 0 0 476px 0;
-  text-align: center;
-  height: 280px;
-  width: 100%;
-  z-index: 11;
+.slick-prev:before, /*カルーセル矢印の戻るボタン*/
+.slick-next:before  /*カルーセル矢印の進むボタン*/
+{
+    color: #f00;
 }
-#main-visual > div > h1{
-  font-size: 28px;
-  margin: 90px 0 0 0;
-}
-#main-visual > div > p{
-  margin: 0;
-}
-#main-visual > img {
-  position: absolute;
-    bottom: 0;
-    right: 0;
-  width: 100%;
-  border-radius: 476px 0 0 0;
-  z-index: 10;
-}
+
 /* MISSION */
 h2::after{
   content: url(images/line.png);
@@ -1002,6 +983,7 @@ h3{
 }
 
 /* CONTACT */
+
 /* section要素 */
 #contact{
   margin: 80px 20px;
@@ -1027,6 +1009,12 @@ h3{
   color: #ce2222;
   margin-left: 20px;
   font-weight: bold;
+}
+/* Web フォームの自動入力機能のスタイルを無効にする*/
+input:-webkit-autofill{
+  /* box-shadow: 入力欄にフォーカスが当たった時に、内側に1000px幅の薄いグレーの影を表示します。 */
+  /* inset: 影をボックスの内側に表示。 */
+	box-shadow: 0 0 0px 1000px #fafafa inset;
 }
 /* テキストボックス */
 .contact-textbox{
