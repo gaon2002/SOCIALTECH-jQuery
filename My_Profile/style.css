@@ -21,7 +21,7 @@ h2{
   font-size: 34px;
   font-weight: bold;
   text-align: center;
-  margin: 40px auto;
+  margin: 50px auto;
 }
 
 
@@ -91,6 +91,7 @@ nav{
 ==============*/
 .mainVisual {
   z-index: 90;
+  margin-bottom: 100px;
 }
 
 .mainVisual img{
@@ -103,12 +104,12 @@ nav{
 ==============*/
 /* 最初は非表示 */
 #about{
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity 500ms ease-in;
 }
 /* jsのアニメーション用クラスを設定 */
 .active{
-  visibility: visible;
-  /* transition: opacity 500ms ease-in; */
+  opacity: 1  !important;
 }
 
 #aboutDescroption{
@@ -140,7 +141,12 @@ nav{
 ==============*/
 /* 最初は非表示 */
 #works{
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+/* jsのアニメーション用クラスを設定 */
+.active{
+  opacity: 1  !important;
 }
 
 #worksBox{
