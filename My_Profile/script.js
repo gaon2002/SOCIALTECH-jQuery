@@ -22,9 +22,9 @@ $(document).on('mouseenter', 'a', function() {  //on()だとhover関数が効か
 
 $(window).on('scroll', function(){
   if ($(window).scrollTop() >= 100) { //$(window).scrollTop()現在のスクロール位置を取得
-    $('#top').css('visiblity', 'visible');
+    $('#top').css('visibility', 'visible');
   } else {
-    $('#top').css('visiblity', 'hidden');
+    $('#top').css('visibility', 'hidden');
   }
 });
 
@@ -68,17 +68,21 @@ $(window).on('scroll', function(){
 
 // Worksの画像をクリックしたときにモーダルで拡大表示する
 // 通常動作をキャンセル
-$(document).on('click','.worksImg', function(e) {
+$(document).on('click','.worksImg img', function(e) {
   e.preventDefault();
   // attr()メソッドを使い、クリックされた画像のsrc属性の値を取得する
-  let worksPic = $(this).attr('src');  //クリックされたリンクのhref属性値を取得
+  let worksPic = $(this).attr('src');  //クリックされたリンクのsrc属性値を取得
+  console.log(worksPic);
   $('.worksMimg').attr('src', worksPic); //モーダルの画像部分（img要素）のsrc属性に取得した値を追加する
   $('.worksMordal').css('display', 'inline'); //クリックしたら画像拡大
+
 });
 
 // ✕ボタンを押したら画面を閉じる
 $(document).on('click','.closeButton', function() {
-  //worksMordalを非表示にする 
+  // ✕ボタンのクリックを検知しているか確認するために、コンソールにメッセージを出力
+  console.log("Close button clicked");
+  //worksMordalを非表示にする。　なお、closeButtonのクリックにデフォルト動作がないのでe.preventDefault()は不要
   $('.worksMordal').css('display', 'none'); //クリックしたら非表示にする
 });
 
