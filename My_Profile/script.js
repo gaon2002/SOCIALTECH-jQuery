@@ -11,12 +11,23 @@ $('.mainVisual').slick({
 });
 
 // リンクのホバー時に不透明度をアニメーションで変更する
-//$(document).on('click, blur’, ’HTML要素, HTML要素’, function(){ 関数 })
-$(document).on('mouseenter', 'a', function() {  //on()だとhover関数が効かない？
-  $(this).css('opacity', '0.5'); //$(this)は特定のイベントハンドラ内で使用され、クリックされた要素を指す。
-}).on('mouseleave', 'a', function() {
-  $(this).css('opacity', '1'); //元に戻す
+$('a').hover(
+  function() {  
+  $(this).animate({'opacity': 0.5},300); //$(this)は特定のイベントハンドラ内で使用され、クリックされた要素を指す。
+},function() {  
+  $(this).animate({'opacity': 1},300)
 });
+
+
+//$(document).on('click, blur’, ’HTML要素, HTML要素’, function(){ 関数 })
+// 1回目の処理
+// $(document).on('mouseenter', 'a', function() {  //on()だとhover関数が効かない？
+//   $(this).css('opacity', '0.5'); //$(this)は特定のイベントハンドラ内で使用され、クリックされた要素を指す。
+// }).on('mouseleave', 'a', function() {
+//   $(this).css('opacity', '1'); //元に戻す
+// });
+
+
 
 // スクロールしたときにTOPに戻るボタンを表示させる
 
@@ -46,12 +57,13 @@ $(document).on('click','a[href^="#"]', function() { //'#'のある<a>要素を�
   $('html, body').animate({
     //scrollTop: 垂直方向でどこまでスクロールするのか位置を指定するプロパティ。
     //$(element：position = $target (= html or href))の上部の位置にスクロールするように指示。
+    // swing：jQueryのアニメーションメソッドにおけるイージング（easing）の一種。
+    // 'swing'イージング：アニメーションが始まるときに徐々に速度を上げ、終わりに近づくにつれて速度を下げる効果。
     'scrollTop': position }, speed, 'swing');
     //それ以降の処理を中断し、イベントの伝播（でんぱん）を防ぐ
     return false;
   });
 })
-
 
 // スクロールしたときにセクションをフェードインさせる(works)
 $(window).on('scroll', function(){
@@ -96,20 +108,22 @@ $(window).on('scroll', function(){
 
 // Worksの画像をクリックしたときにモーダルで拡大表示する
 // 通常動作をキャンセル
-$(document).on('click','.worksImg img', function(e) {
-  e.preventDefault();
+$(document).on('click','.worksImg img', function() {
   // attr()メソッドを使い、クリックされた画像のsrc属性の値を取得する
-  let worksPic = $(this).attr('src');  //クリックされたリンクのsrc属性値を取得
+  const worksPic = $(this).attr('src');  //クリックされたリンクのsrc属性値を取得
   console.log(worksPic);
   $('.worksMimg').attr('src', worksPic); //モーダルの画像部分（img要素）のsrc属性に取得した値を追加する
-  $('.worksMordal').css('display', 'inline'); //クリックしたら画像拡大
-
+  // $('.worksMordal').css('display', 'inline'); //1回目のコード
+  $('.worksMordal').fadeIn(); //fadeIn関数を使えば簡単
+  return false;
 });
 
 // ✕ボタンを押したら画面を閉じる
 $(document).on('click','.closeButton', function() {
   // ✕ボタンのクリックを検知しているか確認するために、コンソールにメッセージを出力
   console.log("Close button clicked");
-  //worksMordalを非表示にする。　なお、closeButtonのクリックにデフォルト動作がないのでe.preventDefault()は不要
-  $('.worksMordal').css('display', 'none'); //クリックしたら非表示にする
+  // //worksMordalを非表示にする。　なお、closeButtonのクリックにデフォルト動作がないのでe.preventDefault()は不要
+  // $('.worksMordal').css('display', 'none'); //1回目のコードクリックしたら非表示にする
+  $('.worksMordal').fadeOut();
+  return false;
 });
