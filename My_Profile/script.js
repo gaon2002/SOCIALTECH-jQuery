@@ -21,7 +21,7 @@ $(document).on('mouseenter', 'a', function() {  //on()だとhover関数が効か
 // スクロールしたときにTOPに戻るボタンを表示させる
 
 $(window).on('scroll', function(){
-  if ($(window).scrollTop() >= 100) { //$(window).scrollTop()現在のスクロール位置を取得
+  if ($(window).scrollTop() >= 100) {       //現在のスクロール位置を取得
     $('#top').css('visibility', 'visible');
   } else {
     $('#top').css('visibility', 'hidden');
@@ -30,13 +30,14 @@ $(window).on('scroll', function(){
 
 // ページ内リンクのスクロールをなめらかにする
 $(document).on('click','a[href^="#"]', function(e) { //'#'のある<a>要素をクリックしたときに発生するイベント
-  e.preventDefault();                 //通常クリックしたら発生するリンクつなぎをキャンセル
-  let target = $(this).attr('href');  //ページ内リンクを取得：a[href^="#"]のhref属性値(=リンク先)を取得している
+  e.preventDefault();                 //通常クリックしたら発生するデフォルトの動作をキャンセル
+  let target = $(this).attr('href');  //ページ内リンクを取得：<a>(=$(this))のhref属性値(=リンク先)を取得
 
   //html 要素と body 要素をアニメーションでスクロールするイベント関数
   $('html, body').animate({
-  //scrollTop: 垂直方向でどこまでスクロールするのか位置を指定。
-  //$(element).offset().top: $(element)要素の上部が画面上部に来るようにする。  要素の縁の位置を取得するメソッド。     
+  //scrollTop: 垂直方向でどこまでスクロールするのか位置を指定するプロパティ。
+  //$(element)の上部の位置んいスクロールするように指示。
+  //$(要素).offset().top：要素の上の縁の位置を取得するメソッド。     
     scrollTop: $(target).offset().top 
   }, 1000);
 })
@@ -47,9 +48,9 @@ $(window).on('scroll', function(){
   let scrollTop = $(window).scrollTop()  //現在のスクロール位置を取得
   let windowHeight = $(window).height()  //現在のブラウザウィンドウの高さ（ピクセル単位）を取得
   let aboutTop = $('#about').offset().top //#aboutセクションの上部までの位置を取得
-  // 現在のスクロール位置とブラウザウィンドウの高さの合計がaboutセクションまでスクロールされたら
+  // 現在のスクロール位置とブラウザウィンドウの高さの合計がaboutセクションまでスクロールした時に
   if (scrollTop + windowHeight >= aboutTop - windowHeight / 2) {
-      //クラスを追加する　.sectionとする.sectionというclassを削除します
+      //#aboutにクラスを追加する　※.activeとやってしまうと.activeというclassをすべて削除してしまう
       $('#about').addClass('active'); 
   };
 });
@@ -59,9 +60,9 @@ $(window).on('scroll', function(){
   let scrollTop = $(window).scrollTop()  //現在のスクロール位置を取得
   let windowHeight = $(window).height()  //現在のブラウザウィンドウの高さ（ピクセル単位）を取得
   let worksTop = $('#works').offset().top //#worksセクションの上部までの位置を取得
-  // 現在のスクロール位置とブラウザウィンドウの高さの合計がworksセクションまでスクロールされたら
+  // 現在のスクロール位置とブラウザウィンドウの高さの合計がworksセクションまでスクロールした時に
   if (scrollTop >= worksTop - windowHeight) {
-      //クラスを追加する　.sectionとすると.sectionというclassを削除します
+      //#worksにクラスを追加する
       $('#works').addClass('active'); 
   };
 });
