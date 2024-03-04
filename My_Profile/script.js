@@ -65,14 +65,15 @@ $(document).on('click','a[href^="#"]', function() { //'#'のある<a>要素を�
   });
 })
 
-// スクロールしたときにセクションをフェードインさせる(works)
+// スクロールしたときにセクションをフェードインさせる
 $(window).on('scroll', function(){
   let scrollTop = $(window).scrollTop()  //現在のスクロール位置を取得
   let windowHeight = $(window).height()  //現在のブラウザウィンドウの高さ（ピクセル単位）を取得
   $('section').each(function(){
-    let position = $(this).offset().top //#worksセクションの上部までの位置を取得
+    let position = $(this).offset().top //各セクションの上部までの位置を取得
     // 現在のスクロール位置がそのセクション上部からウィンドウの高さを引いて100px加算した高さを越えたら
-    if (scrollTop >= position - windowHeight + 100) {
+    // ウィンドウの高さ分を差し引く理由は、もともと画面表示されているスクロール量を差し引いかないとかなり下にスクロールするまで表示されないから。
+    if (scrollTop >= position - windowHeight + 200) {
         //それぞれのセクションにクラスを追加する
         $(this).addClass('active'); 
     };
@@ -107,7 +108,6 @@ $(window).on('scroll', function(){
 
 
 // Worksの画像をクリックしたときにモーダルで拡大表示する
-// 通常動作をキャンセル
 $(document).on('click','.worksImg img', function() {
   // attr()メソッドを使い、クリックされた画像のsrc属性の値を取得する
   const worksPic = $(this).attr('src');  //クリックされたリンクのsrc属性値を取得
