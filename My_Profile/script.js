@@ -33,7 +33,6 @@ $(document).on('click','a[href^="#"]', function(e) { //'#'のある<a>要素を�
   e.preventDefault();                 //通常クリックしたら発生するリンクつなぎをキャンセル
   let target = $(this).attr('href');  //ページ内リンクを取得：a[href^="#"]のhref属性値(=リンク先)を取得している
 
-
   //html 要素と body 要素をアニメーションでスクロールするイベント関数
   $('html, body').animate({
   //scrollTop: 垂直方向でどこまでスクロールするのか位置を指定。
@@ -41,6 +40,7 @@ $(document).on('click','a[href^="#"]', function(e) { //'#'のある<a>要素を�
     scrollTop: $(target).offset().top 
   }, 1000);
 })
+
 
 // スクロールしたときにセクションをフェードインさせる(about)
 $(window).on('scroll', function(){
@@ -66,16 +66,20 @@ $(window).on('scroll', function(){
   };
 });
 
-
-
 // Worksの画像をクリックしたときにモーダルで拡大表示する
-$(document).on('click','a[src]', function(e) {
+// 通常動作をキャンセル
+$(document).on('click','.worksImg', function(e) {
   e.preventDefault();
-  let target = $(this).attr('href');  //クリックされたリンクのhref属性値を取得
-  $('html, body').animate({           //html 要素と body 要素をアニメーションでスクロール
-    scrollTop: $(target).offset().top //offset().topと記述することで、上からの位置を取得できる
-  }, 1000);
-})
+  // attr()メソッドを使い、クリックされた画像のsrc属性の値を取得する
+  let worksPic = $(this).attr('src');  //クリックされたリンクのhref属性値を取得
+  $('.worksMimg').attr('src', worksPic); //モーダルの画像部分（img要素）のsrc属性に取得した値を追加する
+  $('.worksMordal').css('display', 'inline'); //クリックしたら画像拡大
+});
 
+// ✕ボタンを押したら画面を閉じる
+$(document).on('click','.closeButton', function() {
+  //worksMordalを非表示にする 
+  $('.worksMordal').css('display', 'none'); //クリックしたら非表示にする
+});
 
 });
