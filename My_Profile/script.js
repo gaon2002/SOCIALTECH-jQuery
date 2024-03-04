@@ -87,4 +87,6 @@ $(document).on('click','.closeButton', function() {
   $('.worksMordal').css('display', 'none'); //クリックしたら非表示にする
 });
 
+// 完了
+
 });
