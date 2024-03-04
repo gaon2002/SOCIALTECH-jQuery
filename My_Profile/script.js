@@ -29,43 +29,70 @@ $(window).on('scroll', function(){
 });
 
 // ページ内リンクのスクロールをなめらかにする
-$(document).on('click','a[href^="#"]', function(e) { //'#'のある<a>要素をクリックしたときに発生するイベント
-  e.preventDefault();                 //通常クリックしたら発生するデフォルトの動作をキャンセル
-  let target = $(this).attr('href');  //ページ内リンクを取得：<a>(=$(this))のhref属性値(=リンク先)を取得
-
+$(document).on('click','a[href^="#"]', function() { //'#'のある<a>要素をクリックしたときに発生するイベント
+  // e.preventDefault();                 //通常クリックしたら発生するデフォルトの動作をキャンセル
+  const href = $(this).attr('href');  //ページ内リンクを取得：<a>(=$(this))のhref属性値(=リンク先)を取得
+  const speed = 500;
+  let $target;
+  if (href == '#'){                   //リンクが'#'だったら、'html'にしてTOPに戻る
+    $target = $('html');
+  }else{
+    $target = $(href);                //そうでなければ、クリックしたリンク先を指定
+  }
+  //$(要素).offset().top：要素の上の縁の位置を取得するメソッド。  
+  const position = $target.offset().top ;
   //html 要素と body 要素をアニメーションでスクロールするイベント関数
+  // ブラウザによってhtml要素またはbody要素のどちらかにしか対応していないため、両方を対象にする
   $('html, body').animate({
-  //scrollTop: 垂直方向でどこまでスクロールするのか位置を指定するプロパティ。
-  //$(element)の上部の位置んいスクロールするように指示。
-  //$(要素).offset().top：要素の上の縁の位置を取得するメソッド。     
-    scrollTop: $(target).offset().top 
-  }, 1000);
+    //scrollTop: 垂直方向でどこまでスクロールするのか位置を指定するプロパティ。
+    //$(element：position = $target (= html or href))の上部の位置にスクロールするように指示。
+    'scrollTop': position }, speed, 'swing');
+    //それ以降の処理を中断し、イベントの伝播（でんぱん）を防ぐ
+    return false;
+  });
 })
 
-
-// スクロールしたときにセクションをフェードインさせる(about)
-$(window).on('scroll', function(){
-  let scrollTop = $(window).scrollTop()  //現在のスクロール位置を取得
-  let windowHeight = $(window).height()  //現在のブラウザウィンドウの高さ（ピクセル単位）を取得
-  let aboutTop = $('#about').offset().top //#aboutセクションの上部までの位置を取得
-  // 現在のスクロール位置とブラウザウィンドウの高さの合計がaboutセクションまでスクロールした時に
-  if (scrollTop + windowHeight >= aboutTop - windowHeight / 2) {
-      //#aboutにクラスを追加する　※.activeとやってしまうと.activeというclassをすべて削除してしまう
-      $('#about').addClass('active'); 
-  };
-});
 
 // スクロールしたときにセクションをフェードインさせる(works)
 $(window).on('scroll', function(){
   let scrollTop = $(window).scrollTop()  //現在のスクロール位置を取得
   let windowHeight = $(window).height()  //現在のブラウザウィンドウの高さ（ピクセル単位）を取得
-  let worksTop = $('#works').offset().top //#worksセクションの上部までの位置を取得
-  // 現在のスクロール位置とブラウザウィンドウの高さの合計がworksセクションまでスクロールした時に
-  if (scrollTop >= worksTop - windowHeight) {
-      //#worksにクラスを追加する
-      $('#works').addClass('active'); 
-  };
+  $('section').each(function(){
+    let position = $(this).offset().top //#worksセクションの上部までの位置を取得
+    // 現在のスクロール位置がそのセクション上部からウィンドウの高さを引いて100px加算した高さを越えたら
+    if (scrollTop >= position - windowHeight + 100) {
+        //それぞれのセクションにクラスを追加する
+        $(this).addClass('active'); 
+    };
+  });
 });
+
+
+// 1回目：　about、worksそれぞれでフェードインを作成していた。
+// // スクロールしたときにセクションをフェードインさせる(about)
+// $(window).on('scroll', function(){
+//   let scrollTop = $(window).scrollTop()  //現在のスクロール位置を取得
+//   let windowHeight = $(window).height()  //現在のブラウザウィンドウの高さ（ピクセル単位）を取得
+//   let aboutTop = $('#about').offset().top //#aboutセクションの上部までの位置を取得
+//   // 現在のスクロール位置とブラウザウィンドウの高さの合計がaboutセクションまでスクロールした時に
+//   if (scrollTop + windowHeight >= aboutTop - windowHeight + 100) {
+//       //#aboutにクラスを追加する　※.activeとやってしまうと.activeというclassをすべて削除してしまう
+//       $('#about').addClass('active'); 
+//   };
+// });
+
+// // スクロールしたときにセクションをフェードインさせる(works)
+// $(window).on('scroll', function(){
+//   let scrollTop = $(window).scrollTop()  //現在のスクロール位置を取得
+//   let windowHeight = $(window).height()  //現在のブラウザウィンドウの高さ（ピクセル単位）を取得
+//   let worksTop = $('#works').offset().top //#worksセクションの上部までの位置を取得
+//   // 現在のスクロール位置とブラウザウィンドウの高さの合計がworksセクションまでスクロールした時に
+//   if (scrollTop >= worksTop - windowHeight) {
+//       //#worksにクラスを追加する
+//       $('#works').addClass('active'); 
+//   };
+// });
+
 
 // Worksの画像をクリックしたときにモーダルで拡大表示する
 // 通常動作をキャンセル
@@ -85,8 +112,4 @@ $(document).on('click','.closeButton', function() {
   console.log("Close button clicked");
   //worksMordalを非表示にする。　なお、closeButtonのクリックにデフォルト動作がないのでe.preventDefault()は不要
   $('.worksMordal').css('display', 'none'); //クリックしたら非表示にする
-});
-
-// 完了
-
 });
