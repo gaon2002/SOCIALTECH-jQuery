@@ -1,0 +1,237 @@
+@charset "utf-8";
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* Google fonts適用 */
+/* <uniquifier>: Use a unique and descriptive class name */
+/* <weight>: Use a value from 100 to 900 */
+
+body {
+  /* フォント設定 */
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  /* レイアウト */
+  background-color: #ffffff;
+}
+h2{
+  font-size: 4vw;
+  font-weight: bold;
+  text-align: center;
+  margin: 50px auto;
+}
+
+
+/* =======
+   Header 
+=========*/
+header {
+  width: 100%;
+  height: auto;
+
+}
+a{
+  font-size: 3vw;
+  font-weight: bold;
+  text-decoration: none;
+}
+nav{
+  max-width: 960px;
+  margin: 20px auto;
+  height: auto;
+  display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#myProfile{
+  height: 60px;
+  line-height: 60px;
+  margin-left: 20px;
+  padding: 0 10px;
+  text-align: center;
+  border: solid 1px #000000;
+  color: #000000;
+}
+
+nav > div{
+  display: flex;
+  justify-content: center; /* 子要素を中央に配置 */
+  flex-wrap: wrap;
+}
+
+.mpLink{
+  margin: 0 20px;
+  width: 100px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #000000;
+}
+
+/* TOPボタン */
+#top {
+  visibility: hidden; /* display: none; はalignやjustifyプロパティを無効化するため、visibly:hiddenを適用 */
+  position: fixed; /*ボタンの位置固定*/
+    bottom: 38px;
+    right: 20px;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  background-color: #000000;
+  font-size: 20px;
+  /* 丸形にする */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  z-index: 100;
+}
+#top a {
+  font-size: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* ============
+  Main Visual
+==============*/
+.mainVisual {
+  z-index: 90;
+  margin-bottom: 100px;
+}
+
+.mainVisual img{
+  width: 100%;
+  z-index: 80;
+}
+
+/* ============
+     About
+==============*/
+/* 最初は非表示 */
+#about{
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+/* jsのアニメーション用クラスを設定 */
+.active{
+  opacity: 1  !important;
+}
+
+#aboutDescroption{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+#aboutImg{
+  width: 30%;
+  height: 30%;
+  margin-right: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  /* 二重線の作り方：ボーダー設定してパディングする */
+  border: 3px solid #999;
+  padding: 3px;
+}
+#aboutPerson{
+  margin-left: 40px;
+}
+#aboutPerson > h3{
+  font-size: 24px;
+  margin: 20px 20px;
+}
+#aboutPerson > ul{
+  margin-left: 20px;
+}
+
+/* ============
+     Works
+==============*/
+/* 最初は非表示 */
+#works{
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+/* jsのアニメーション用クラスを設定 */
+.active{
+  opacity: 1  !important;
+}
+
+#worksBox{
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.worksContent{
+  width: 33%;
+  padding: 10px;
+}
+.worksImg > img{
+  width: 100%;
+}
+
+/* ================
+   Works/Mordal
+==================*/
+.worksMordal{
+  display:none;
+  position:fixed;
+    top: 0;
+    left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 110;
+}
+.worksMimg{
+  position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+}
+.closeButton{
+  position: fixed;
+    top: 10px;
+    right: 20px;
+    color: #ffffff;
+    font-size: 40px;
+  cursor: pointer;
+}
+
+
+/* ============
+    footer
+==============*/
+#copyRight{
+  text-align: center;
+  margin: 30px auto;
+}
+
+/* ==============
+  レスポンシブル　worksの画像をflex-directionにする
+================*/
+ @media screen and (max-width: 769px) {
+  #worksBox{
+    width: 60%;
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .worksContent{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+} 
