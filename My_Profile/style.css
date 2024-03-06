@@ -130,8 +130,8 @@ nav > div{
   margin: 0 auto;
 }
 #aboutImg{
-  width: 30%;
-  height: 30%;
+  width: 280px;
+  height: 280px;
   margin-right: 40px;
   object-fit: cover;
   border-radius: 50%;
