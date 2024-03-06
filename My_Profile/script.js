@@ -70,7 +70,7 @@ $(window).on('scroll', function(){
   let scrollTop = $(window).scrollTop()  //現在のスクロール位置を取得
   let windowHeight = $(window).height()  //現在のブラウザウィンドウの高さ（ピクセル単位）を取得
   $('section').each(function(){
-    let position = $(this).offset().top //各セクションの上部までの位置を取得
+    let position = $(this).offset().top //各セクションの上部までの位置を取得・・・毎回一の情報をとらないといけないので、式の中にメソッドを入れておく必要がある
     // 現在のスクロール位置がそのセクション上部からウィンドウの高さを引いて100px加算した高さを越えたら
     // ウィンドウの高さ分を差し引く理由は、もともと画面表示されているスクロール量を差し引いかないとかなり下にスクロールするまで表示されないから。
     if (scrollTop >= position - windowHeight + 200) {
